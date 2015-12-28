@@ -87,7 +87,7 @@ class LogStash::Filters::Bro < LogStash::Filters::Base
     end
 
     unless @meta[current_event][:filter_initialized] 
-      initialize_filter(event, current_event)
+      initialize_filter(current_event)
       print_config(current_event)
     end
     #begin
@@ -175,7 +175,7 @@ class LogStash::Filters::Bro < LogStash::Filters::Base
     @logger.info("types:          \"#{@meta[current_event][:types]}\"")
   end # def print_path_config
 
-  def initialize_filter(event, current_event)
+  def initialize_filter(current_event)
     @meta[current_event][:mutex].synchronize do
       unless @meta[current_event][:filter_initialized]
         lines = File.foreach(current_event).first(8)
