@@ -144,7 +144,7 @@ class LogStash::Filters::Bro < LogStash::Filters::Base
         end
       end
 
-      # Add some additiodsnal data
+      # Add some additional data
       if event.include?("@timestamp")
         event["ts"]          = event["@timestamp"]
         print "TS:", event["ts"], "\n"
